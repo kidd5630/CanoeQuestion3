@@ -1,17 +1,39 @@
 import React, { useState } from 'react';
-
+import {
+    BASE_URL,
+    submitThisForm
+} from '../api';
 const CourseForm = ()=>{
-    const [choiceA, setChoiceA]= useState('')
-    const [choiceB, setChoiceB]= useState('')
-    const [choiceC, setChoiceC]= useState('')
+    let [choiceA, setChoiceA]= useState('')
+    let [choiceB, setChoiceB]= useState('')
+    let [choiceC, setChoiceC]= useState('')
 
+    async function submitForm(e){
+        e.preventDefault();
+        choiceA = choiceA.toLowerCase();
+        choiceB = choiceB.toLowerCase();
+        choiceC = choiceC.toLowerCase();
+       
+        if((choiceA !== "calculus") && (choiceB!== "calculus") && (choiceC !== "calculus")){
+            alert("One Course Must Be 'Calculus' In Order To Submit"); 
+        }else{
+        //     try {
+        //         const results = await submitThisForm();
+        //         if(results){
+        //           alert("The Form Was Successfully Sumitted")  
+        //         }
+        //     } catch(error){
+        //         console.error(error);
+        //     }
+        //     alert("one of these are correct")
+        alert("it submitted")
+        }
+        
+    }
 
-    console.log("ChoiceA:", choiceA);
-    console.log("ChoiceB:", choiceB);
-    console.log("ChoiceC:", choiceC);
     return(
         <div>
-        <form className='classRegistration' >
+        <form className='classRegistration' onSubmit={submitForm} >
             Choice A:
             <input type="text" 
                 placeholder='Course Choice'
